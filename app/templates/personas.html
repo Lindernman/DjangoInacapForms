@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="flex  justify-center mt-8 px-6">
+    <div class="flex flex-col w-full  ">
+
+
+        <div class="font-extrabold text-xl">
+            Nuevo Registro
+        </div>
+        <form class="flex flex-col gap-2 my-2" type="submit" method="POST" action="{% url 'registrar' %}">
+            {% csrf_token %}
+            <input required name="nombre" class="input" type="text" placeholder="Ingrese el nombre">
+            <button class="btn btn-success btn-sm">Registrar</button>
+        </form>
+    </div>
+    <div class="divider divider-horizontal text-emerald-600">*</div>
+
+    <div class="flex flex-col w-full">
+
+
+        <div class="font-extrabold text-xl">
+            Personas Registradas
+        </div>
+
+        {% if personas|length <= 0 %}
+        <div class="text-yellow-500 font-bold text-center text-lg">
+
+            No hay registros
+        </div>
+        {% else %}
+
+        <div class="overflow-x-auto">
+            <table class="table table-zebra w-full table-compact font-bold">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for persona in personas  %}
+                    <tr>
+                        <td>{{persona.id}}</td>
+                        <td>{{persona.nombre}}</td>
+
+                        <td><a href="/personas/{{persona.id}}" class="btn btn-xs ">Detalle</a></td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+{% endblock content %}
