@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'prueba2.apps.Prueba2Config',
     'app.apps.AppConfig',
     'django.contrib.admin',
     'django.contrib.auth',
